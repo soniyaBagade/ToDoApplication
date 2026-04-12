@@ -1,0 +1,68 @@
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { ToDoHome }  from "./todo-home";
+import { TodoLogin } from "./todo-login";
+import { TodoRegister } from "./todo-register";
+import { ToDoDashboard } from "./todo-dashboard";
+import { useCookies } from "react-cookie";
+import { useEffect } from "react";
+import { ToDoAppointmentDetails } from "./todo-appointment-details";
+import { ToDoAddAppointment } from "./todo-add-appointment";
+import { ToDoEditAppointment } from "./todo-edit-appointment";
+
+
+
+export let initialState = {
+    sharedAppointments:[],
+    appointmentsCount: 0
+}
+
+export function reducer(state, action){
+    switch(action.type){
+        case 'share' :
+            state.sharedAppointments.push(state.payload);
+            state.appointmentsCount = state.sharedAppointments.length;
+            break;
+    }
+
+}
+
+
+export function TodoIndex(){
+
+    const [cookies, setCookie, removeCookie] = useCookies(['user_id','user_name']);
+
+    useEffect(()=>{
+        
+    },[cookies]) 
+
+
+    return(
+        <div>
+            <BrowserRouter>
+                <header className={`p-4 ${(cookies['user_id'])?'d-none':'d-flex'} justify-content-between align-items-center bg-light`}>
+                    <div className="fs-4 text-primary fw-bold">
+                        <span className="bi bi-pencil-square"><Link  to="/" className="text-decoration-none">Task Manager</Link></span>
+                    </div>
+                    <div className="fs-5 text-primary">
+                        <span>Features</span>
+                        <span className="mx-3">Pricing</span>
+                        <span>About</span>
+                    </div>
+                </header>
+                <section>
+                    <Routes className="p-2">
+                           <Route path="/" element={<ToDoHome/>}></Route>
+                           <Route path="login" element={<TodoLogin width='w-50' align='d-flex justify-content-center mt-5'/>}></Route>
+                           <Route path="register" element={<TodoRegister  width='w-25' align='d-flex justify-content-center mt-5' />}></Route>
+                           <Route path="dashboard" element={<ToDoDashboard/>}>
+                             <Route index element={<ToDoAppointmentDetails/>}></Route>
+                             <Route path="details" element={<ToDoAppointmentDetails/>}></Route>
+                             <Route path="add-appointment" element={<ToDoAddAppointment/>}></Route>
+                             <Route path="edit-appointment/:id" element={<ToDoEditAppointment/>}/>
+                           </Route>
+                    </Routes>
+                </section>
+            </BrowserRouter>
+        </div>
+    )
+}

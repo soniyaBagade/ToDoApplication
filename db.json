@@ -1,0 +1,48 @@
+{
+  "users": [
+    {
+      "user_id": "sam",
+      "user_name": "samson",
+      "password": "sam12",
+      "email": "sam@gmail.com",
+      "id": "DOHln51vSa4"
+    },
+    {
+      "user_id": "sonu",
+      "user_name": "soniya",
+      "password": "sonu12",
+      "email": "sonu@gmail.com",
+      "id": "ZuaE9dCrTE8"
+    },
+    {
+      "user_id": "jai",
+      "user_name": "jai jain",
+      "password": "jai25",
+      "email": "jai@gmail.com",
+      "id": "4QTwMitUbzA"
+    }
+  ],
+  "appointments": [
+    {
+      "title": "Company Meeting",
+      "description": "Company meeting with client for future",
+      "user_id": "sam",
+      "id": "oNah9iuIX0c"
+    },
+    {
+      "title": "React Class",
+      "description": "Attend",
+      "date": "2026-03-01",
+      "user_id": "sonu",
+      "id": "_AuvgKqF-BM"
+    },
+    {
+      "title": "project",
+      "description": "project review",
+      "date": "2026-04-07",
+      "user_id": "sam",
+      "id": "C_ytMTwWx4E"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
